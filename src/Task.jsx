@@ -12,6 +12,17 @@ export default function Task(props) {
             <p>Priority: {props.priority}</p>
             <p>Due: {props.dueDate}</p>
             <p>Status: {props.status}</p>
+
+
+            <select 
+                value={status}
+                onChange={(event) => onStatusChange(id, event.target.value)}
+            >
+                <option value="Unstarted">Unstarted</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Completed">Completed</option>
+            </select>
         </div>
-    )
+    );
+    
 }

@@ -3,29 +3,45 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Task from './Task'
+import Home from './Home'
+import About from './About'
+import Todos from './Todos'
+import Error from './Error'
+import PokemonPage from './PokemonPage'
+import PokemonComp from './PokemonComp'
+import { Routes, Route, Link } from 'react-router-dom'
 
 function App() {
-  const [todos, setTodos] = useState([
-    {id: 1, name : 'Bootcamp HW', priority:'High', dueDate:'Mar 2', status:'In Progress'},
-    {id: 2, name: 'Post-Retreat Laundry', priority:'Medium', dueDate:'Mar 1', status:'Completed'}
-
-  ]);
 
   return (
     <div>
-      <h1>To-Do List</h1>
+      <nav> 
+        <Link to="/">Home</Link> |{" "}
+        <Link to="/todos">Todos</Link> |{" "}
+        <Link to="/about">About</Link> |{" "}
+        <Link to="/pokemon">Pokemon</Link> |{" "}
+        
+        {/* <Link to="/error">Error</Link> */}
+      </nav>
 
-      {todos.map((todo) => ( 
-        <Task
-          key={todo.id}
-          {...todo}
-          // name={todo.name}
-          // priority={todo.priority}
-          // dueDate={todo.dueDate}
-        />
-      ))}
+      <Routes> {/* container that holds routes  */}
+        {/* defines which component loads for each URL */}
+        <Route path="/" element={<Home />} /> 
+        <Route path="/todos" element={<Todos />} />
+        <Route path="/about" element={<About />} />
+        {/* <Route path="/error" element={<Error />} /> */}
+
+        <Route path="*" element={<Error />} />
+    
+        <Route path='/pokemon' element={<PokemonPage />} />
+        <Route path="/pokemon/:name" element={<PokemonComp />} />
+      </Routes>
+
     </div>
-  );
+  )
+  
 }
+
+
 
 export default App
